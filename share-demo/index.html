@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>一笔点亮理想建筑｜建筑互动演示</title>
+<meta name="description" content="从建筑线稿到实景，点击画面，一步步点亮空间。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="一笔点亮理想建筑">
+<meta property="og:description" content="从建筑线稿到实景，点击画面，一步步点亮空间。">
+<meta property="og:url" content="https://junnan.me/share-demo/">
+<meta property="og:image" content="https://junnan.me/share-cover.jpg">
+<meta property="og:image:width" content="500">
+<meta property="og:image:height" content="500">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一笔点亮理想建筑">
+<meta name="twitter:description" content="从建筑线稿到实景，点击画面，一步步点亮空间。">
+<meta name="twitter:image" content="https://junnan.me/share-cover.jpg">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f2ea;color:#17211e;font-family:ui-serif,"Noto Serif SC","Songti SC",serif}main{min-height:100svh;display:grid;place-items:center;padding:24px}.card{width:min(100%,760px);background:#fffdf8;border:1px solid #dcd5c8;box-shadow:0 18px 60px #1b21171a;overflow:hidden}header{padding:26px 28px 18px;display:flex;justify-content:space-between;gap:16px;align-items:end}h1{font-size:clamp(22px,4vw,36px);margin:0;font-weight:600;letter-spacing:.06em}p{margin:7px 0 0;color:#59645d;line-height:1.65}.badge{font:12px ui-sans-serif,sans-serif;letter-spacing:.1em;color:#8c5a2e;white-space:nowrap}button{border:0;background:transparent;width:100%;padding:0;cursor:pointer;display:block}.scene{position:relative;aspect-ratio:3/2;overflow:hidden}.scene svg,.scene img{position:absolute;inset:0;width:100%;height:100%;display:block}.scene img{object-fit:cover;opacity:0;transition:opacity 1s ease}.scene.photo-on img{opacity:1}.shape{stroke:#343b36;stroke-width:4;stroke-linejoin:round;transition:fill .8s ease,stroke .8s ease}.detail{fill:none;stroke:#46524b;stroke-width:3;transition:stroke .8s ease}.sky{fill:#f4f4f0}.mountain{fill:#deded7}.land{fill:#ebebe2}.wall{fill:#f9f7ef}.window{fill:#edf2ef}.color-on .sky{fill:#f2c18d}.color-on .mountain{fill:#72856d}.color-on .land{fill:#8ea273}.color-on .wall{fill:#e4c8a7}.color-on .window{fill:#788b7f}.color-on .detail{stroke:#493e31}.color-on .shape{stroke:#5a4938}footer{padding:16px 28px 24px;font:14px ui-sans-serif,system-ui,sans-serif;color:#66716a;display:flex;justify-content:space-between;gap:12px}button:focus-visible{outline:3px solid #8c5a2e;outline-offset:-3px}@media(max-width:520px){header{display:block;padding:22px 20px 14px}.badge{display:block;margin-top:10px}footer{padding:14px 20px 20px;font-size:13px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important}}
+</style>
+</head>
+<body><main><section class="card"><header><div><h1>建筑 · 光影上色</h1><p>每点一次，画面进入下一个阶段。</p></div><span class="badge" id="state" aria-live="polite">LINE ART</span></header>
+<button id="scene" class="scene" aria-label="进入上色阶段">
+<svg viewBox="0 0 1536 1024" aria-hidden="true">
+<rect class="sky" width="1536" height="1024"/>
+<path class="mountain" d="M0 452 Q105 314 305 278 Q400 301 478 371 Q555 300 678 294 Q779 320 864 391 Q992 301 1086 286 Q1231 296 1354 345 Q1450 330 1536 366 L1536 760 H0Z"/>
+<path class="land" d="M0 735 Q250 704 355 729 L1285 729 Q1420 700 1536 715 V1024 H0Z"/>
+<path class="shape wall" d="M674 188 L1082 389 L1082 732 L674 732 Z"/>
+<path class="shape wall" d="M1100 406 L1283 286 L1283 732 L1100 732 Z"/>
+<path class="shape wall" d="M355 369 L655 188 L655 732 L355 732 Z"/>
+<path class="shape window" d="M421 405 L589 301 L589 684 L421 684 Z"/>
+<path class="shape window" d="M722 259 L1041 418 L1041 684 L722 684 Z"/>
+<path class="shape window" d="M1149 449 L1223 398 L1223 684 L1149 684 Z"/>
+<path class="detail" d="M655 188 H674 M655 732 H674 M1082 389 L1100 406 M1082 732 H1100 M421 500 H589 M483 368 V684 M722 389 H841 M722 500 H1041 M841 319 V684 M935 367 V684 M1149 549 H1223 M355 684 H1285 M212 734 H1465 M212 751 H1465"/>
+</svg><img src="/building-render.png" alt="AI生成的建筑实景效果图"></button>
+<footer><span id="hint">点击进入上色</span><span>JUNNAN.ME · DEMO</span></footer></section></main>
+<script>
+const scene=document.querySelector('#scene'),state=document.querySelector('#state'),hint=document.querySelector('#hint');let stage=0;
+scene.addEventListener('click',()=>{stage=(stage+1)%3;scene.classList.toggle('color-on',stage>0);scene.classList.toggle('photo-on',stage===2);state.textContent=['LINE ART','COLORED SPACE','AI VISUALIZATION'][stage];hint.textContent=['点击进入上色','点击进入实景','点击返回线稿'][stage];scene.setAttribute('aria-label',['进入上色阶段','进入实景阶段','返回线稿阶段'][stage])});
+</script></body></html>
